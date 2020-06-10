@@ -8,11 +8,22 @@ const initialFriends = [
 ]
 
 function App() {
+  // App is the top-level component
+  // so it's an EXCELLENT place to put
+  // all of our slices of state
   const [friends, setFriends] = useState(initialFriends)
 
   return (
     <div className="App">
       {/* Make a form to add friends! */}
+      <form>
+        <label> first name
+          <input
+            name= 'fname'
+            type='text'
+        />
+        </label>
+      </form>
 
       <h3>List of friends:</h3>
       {
