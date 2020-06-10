@@ -13,11 +13,30 @@ function App() {
   // all of our slices of state
   const [friends, setFriends] = useState(initialFriends)
   const [fnameValue, setFnameValue] = useState('')
-  const onFnameChange = event => {
-    // we are going to update app state
-    // with the new value of the input 
-    setFnameValue(event.target.value)
+  const [formValues, setFormValues] = useState({
+    fname: '',
+    lname: '',
+  })
+  const onInputChange = event => {
+    // use the event object 
+    // to fish out the current value 
+    // and replace the WHOLE formValues object
+    // with a new one that's a copy of the old one
+    // BUT with a little override  
+    const inputThatChanged = event.target.name
+    const newValueForInput = event.target.value
+    setFormValues({
+      ...formValues,
+      [inputThatChanged]: newValueForInput,
+    })
   }
+
+
+  // const onFnameChange = event => {
+  //   // we are going to update app state
+  //   // with the new value of the input 
+  //   setFnameValue(event.target.value)
+  // }
 
   return (
     <div className="App">
@@ -25,8 +44,10 @@ function App() {
       <form>
         <label> first name
           <input
-            onChange={onFnameChange}  // callback takes an event object 
-            value={fnameValue}
+            onChange={onInputChange}  // callback takes an event object 
+            value={formValues.fname}
+            // onChange={onFnameChange}  
+            // value={fnameValue}
             name= 'fname'
             type='text'
           />
