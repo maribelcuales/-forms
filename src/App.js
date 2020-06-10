@@ -52,6 +52,14 @@ function App() {
             type='text'
           />
         </label>
+        <label> last name
+          <input
+            onChange={onInputChange}  // callback takes an event object 
+            value={formValues.lname}
+            name= 'lname'
+            type='text'
+          />
+        </label>
       </form>
 
       <h3>List of friends:</h3>
