@@ -12,7 +12,7 @@ function App() {
   // so it's an EXCELLENT place to put
   // all of our slices of state
   const [friends, setFriends] = useState(initialFriends)
-  const [fnameValue, setFnameValue] = useState('')
+  // const [fnameValue, setFnameValue] = useState('')
   const [formValues, setFormValues] = useState({
     fname: '',
     lname: '',
@@ -30,6 +30,19 @@ function App() {
       [inputThatChanged]: newValueForInput,
     })
   }
+  const onFormSubmit = event => {
+    // stop the form from reloading the page on submit
+    event.preventDefault()
+    // let's add a new friend to the friends array in state
+    // let's make a new friend
+    const newFriend = {
+      id: uuid(),
+      fname: formValues.fname,
+      lname: formValues.lname
+    }
+    setFriends([ ...friends, newFriend ])  // WE NEED TO PASS AN ENTIRE ARRAY
+    // setFriends(friends.concat(newFriend)) // can also do this as concat returns a new fresh array 
+  } 
 
 
   // const onFnameChange = event => {
@@ -41,7 +54,7 @@ function App() {
   return (
     <div className="App">
       {/* Make a form to add friends! */}
-      <form>
+      <form onSubmit={onFormSubmit}>
         <label> first name
           <input
             onChange={onInputChange}  // callback takes an event object 
@@ -51,10 +64,11 @@ function App() {
             name= 'fname'
             type='text'
           />
-        </label>
+        </label><br />
+
         <label> last name
           <input
-            onChange={onInputChange}  // callback takes an event object 
+            onChange={onInputChange}
             value={formValues.lname}
             name= 'lname'
             type='text'
