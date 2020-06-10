@@ -12,7 +12,6 @@ function App() {
   // so it's an EXCELLENT place to put
   // all of our slices of state
   const [friends, setFriends] = useState(initialFriends)
-  // const [fnameValue, setFnameValue] = useState('')
   const [formValues, setFormValues] = useState({
     fname: '',
     lname: '',
@@ -44,13 +43,6 @@ function App() {
     // setFriends(friends.concat(newFriend)) // can also do this as concat returns a new fresh array 
   } 
 
-
-  // const onFnameChange = event => {
-  //   // we are going to update app state
-  //   // with the new value of the input 
-  //   setFnameValue(event.target.value)
-  // }
-
   return (
     <div className="App">
       {/* Make a form to add friends! */}
@@ -59,8 +51,6 @@ function App() {
           <input
             onChange={onInputChange}  // callback takes an event object 
             value={formValues.fname}
-            // onChange={onFnameChange}  
-            // value={fnameValue}
             name= 'fname'
             type='text'
           />
@@ -73,7 +63,9 @@ function App() {
             name= 'lname'
             type='text'
           />
-        </label>
+        </label><br /> 
+
+        <input type='submit' />
       </form>
 
       <h3>List of friends:</h3>
